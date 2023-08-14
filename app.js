@@ -1,9 +1,9 @@
 function updateRotation(e) {
     let x, y;
   
-    if (e.touches) {
-      x = e.touches[0].clientX;
-      y = e.touches[0].clientY;
+    if (e.type === 'touchmove') {
+      x = e.changedTouches[0].clientX;
+      y = e.changedTouches[0].clientY;
     } else {
       x = e.clientX;
       y = e.clientY;
@@ -19,6 +19,3 @@ function updateRotation(e) {
   
   document.addEventListener('mousemove', updateRotation);
   document.addEventListener('touchmove', updateRotation);
-
-
-
