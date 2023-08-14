@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    
+    <title>Planet_3D</title>
+    <script src="rain.js" defer></script>
+    <script src="./meteor.js?time=12212213213"></script>
+</head>
+<body>
+    <div class="logo" style="background-image: url(images/logo.svg);"></div>
+    <section class="layers">
+        <div class="layers__container">
+            <div class="layers__item layer-1" style="background-image: url(images/back.jpg);"></div>
+            <div class="layers__item layer-2" style="background-image: url(images/first.png);"></div>
+            <div class="layers__item layer-3" style="background-image: url(images/second.png);"></div>
+            <div class="layers__item layer-4" style="background-image: url(images/third.png);"></div>
+
+            <div class="layers__item layer-5" style="background-image: url(images/meteors.png);"></div>
+
+
+            <div class="layers__item layer-8">
+                <div class="hero-content">
+                    <h1>Extraterrestrial<span> design</span></h1>
+                    <div class="hero-content__p">
+                        Lens effect - rise above
+                    </div>
+                    <button class="button-start">
+                        Start Project 
+                    </button>
+                </div>
+            </div>
+            <div class="layers__item layer-9">
+                <canvas id="canvas"></canvas>
+                <!-- <canvas class="rain">
+                    
+                </canvas> -->
+            </div>
+        </div>  
+    </section>
+
+    <script src="app.js"></script>
+    
+</body>
+</html>

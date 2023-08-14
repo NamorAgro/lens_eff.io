@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;    
+}
+
+:root {
+    --index: calc(1vw + 1vh);
+    --transition: 1.5s cubic-bezier(.05, .5, 0, 1);
+}
+
+@font-face {
+    font-family: kamerik-3d;
+    src: url(fonts/kamerik205-heavy.woff2);
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: marriweather-3d;
+    src: url(/fonts/merriweather-regular-italic.woff2);
+}
+
+body{
+    background-color: black;
+    color: white;
+    font-family: kamerik-3d;
+}
+
+.logo{
+    --logo-size: calc(var(--index) * 5.8);
+    width: var(--logo-size);
+    height: var(--logo-size);
+    background-image: url(images/logo.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: absolute;
+    left: calc(50% - calc(var(--logo-size) / 2));
+    top: 10%;
+    z-index: 1;
+}
+
+.layers{
+    perspective: 1000px;
+    overflow: hidden;
+}
+.layers__container{
+    height: 100vh;
+    min-height: 500px;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--move-y)) rotateY(var(--move-x));
+    will-change: transform;
+    transition: transform var(transition);
+}
+.layers__item{
+    position: absolute;
+    inset: -5vw;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.layer-1{
+    transform: translateZ(-55px) scale(1.6);
+}
+.layer-2{
+    transform: translateZ(180px) scale(.9);
+}
+.layer-3{
+    transform: translateZ(120px) scale(1);
+}
+.layer-4{
+    transform: translateZ(60px) scale(1);
+}
+.layer-5{
+    transform: translateZ(240px) scale(.9);
+}
+
+
+.layer-8{
+    transform: translateZ(10px) scale(.8);
+}
+.layer-9{
+    transform: translateZ(5px) scale(.8);
+}
+
+.hero-content{
+    font-size: calc(var(--index) * 1.8);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: calc(var(--index) * .3);
+    line-height: 1.35em;
+    margin-top: calc(var(--index) * 3.5);
+}
+
+.hero-content span{
+    display: block;
+}
+
+.hero-content__p{
+    font-family: marriweather-3d;
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: calc(var(--index) * .75);
+    line-height: 3;
+}
+
+.button-start{
+    font-family: arial;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: calc(var(--index) * .75);
+    letter-spacing: -.02vw;
+    background-color: transparent;
+    padding: calc(var(--index) * .7) calc(var(--index) * 1.25);
+    color: white;
+    border-radius: 10em;
+    border: rgb(255, 255, 255, .4) 3px solid;
+    outline: none;
+    cursor: pointer;
+    margin-top: calc(var(--index) * 2.5);
+}
+
+.layer-5, .layer-4, .layer-3, .layer-2{
+    pointer-events: none;
+}
