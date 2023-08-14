@@ -1,61 +1,29 @@
-document.getElementById('requestPermission').addEventListener('click', function() {
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-      DeviceOrientationEvent.requestPermission()
-        .then(response => {
-          if (response === 'granted') {
-            window.addEventListener('deviceorientation', handleOrientation);
-          }
-        })
-        .catch(console.error);
-    } else {
-      // For non-iOS 13 devices
-      window.addEventListener('deviceorientation', handleOrientation);
-    }
-  });
-  
-  function handleOrientation(event) {
-    console.log("Beta: " + event.beta);
-    console.log("Gamma: " + event.gamma);
-  
-    let x = event.gamma; // In degree in the range [-180,180]
-    let y = event.beta;  // In degree in the range [-90,90]
-  
-    Object.assign(document.documentElement.style, {
-      '--move-x': x * -.005 + 'deg',
-      '--move-y': y * -.01 + 'deg',
-    });
-  }
-// function updateLayers(x, y) {
-//     Object.assign(document.documentElement.style, {
-//       '--move-x': x + 'deg',
-//       '--move-y': y + 'deg',
+// document.addEventListener('mousemove', e => {
+//     Object.assign(document.documentElement, {
+//       style: `
+//         --move-x: ${(e.clientX - window.innerWidth / 2) * -.005}deg;
+//         --move-y: ${(e.clientY - window.innerHeight / 2) * -.01}deg;
+//       `
 //     });
-//   }
-  
-//   // Handle desktop mouse movement
-//   document.addEventListener('mousemove', e => {
-//     updateLayers((e.clientX - window.innerWidth / 2) * -.005, (e.clientY - window.innerHeight / 2) * -.01);
 //   });
-  
-//   // Handle mobile device orientation
-//   if (window.DeviceOrientationEvent) {
-//     if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-//       // iOS 13+
-//       document.addEventListener('touchstart', () => {
-//         DeviceOrientationEvent.requestPermission()
-//           .then(response => {
-//             if (response === 'granted') {
-//               window.addEventListener('deviceorientation', e => {
-//                 updateLayers(e.gamma * -.005, e.beta * -.01);
-//               });
-//             }
-//           })
-//           .catch(console.error);
-//       });
-//     } else {
-//       // non iOS 13+
-//       window.addEventListener('deviceorientation', e => {
-//         updateLayers(e.gamma * -.005, e.beta * -.01);
-//       });
-//     }
-//   }
+report_box = document.getElementById('report_box')
+
+let sensor = new Gyroscope();
+let x, y, z, report;
+sensor.start();
+
+sensor.onreading = () => {
+    report = 'x-axis Angle Velocity: ' + sensor.x + "<br>";
+    report += 'y-axis Angle Velocity: ' + sensor.y + "<br>";
+    report += 'z-axis Angle Velocity: ' + sensor.z + "<br>";
+    report_box.innerHTML = report;
+    x = sensor.x * 100;
+    y = sensor.y * 100;
+    z = sensor.z * -33;
+
+    sensor.onerror = errorHandler;
+    function errorHandler(event){
+        console.log(event.error.name, event.error.message);
+    }
+};
+
