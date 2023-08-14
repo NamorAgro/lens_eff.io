@@ -128,15 +128,3 @@ body{
 }
 
 
-@media (max-width:450px) {
-    
-}
-
-
-#orientationData{
-    position: absolute;
-    z-index: 1000;
-    background-color: green;
-
-    left: 50%;
-}
