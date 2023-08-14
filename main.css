@@ -126,3 +126,17 @@ body{
 .layer-5, .layer-4, .layer-3, .layer-2{
     pointer-events: none;
 }
+
+
+@media (max-width:450px) {
+    
+}
+
+
+#report_box{
+    position: absolute;
+    z-index: 1000;
+    background-color: green;
+
+    left: 50%;
+}
